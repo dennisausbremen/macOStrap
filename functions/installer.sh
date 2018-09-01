@@ -4,6 +4,7 @@ homebrew_install() {
   echo "Installing homebrew..."
   if [ ! -f /usr/local/bin/brew ]; then
     ruby -e "$(\curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    brew tap homebrew/cask-versions
   else
     echo "Homebrew already installed. So far, so good."
   fi
@@ -33,7 +34,7 @@ rvm_install() {
 
 zsh_install() {
   # Symlink macOStraps .zshrc to your $HOME
-  ln -f $BASEDIR/dotfiles/.zshrc ~/.zshrc
+  ln -s $BASEDIR/dotfiles/.zshrc ~/.zshrc
 
   # Install zsh and zplug
   brew install zsh zplug
@@ -49,11 +50,11 @@ zsh_install() {
 
   # Add brew zsh to /etc/shells and switch default-shell
   if [ ! "grep -Fx $(echo $( which zsh )) /etc/shells" ]; then
-    echo "Adding $( which zsh ) to /etc/chells"
-    sudo /bin/sh -c 'echo "$(which zsh)" >> /etc/shells'
+    echo "Adding /usr/local/bin/zsh to /etc/shells"
+    sudo /bin/sh -c '/usr/local/bin/zsh >> /etc/shells'
   fi
 
-  chsh -s $(which zsh)
+  chsh -s /usr/local/bin/zsh
 
   # Install fzf fuzzy completion
   brew install fzf && $(brew --prefix)/opt/fzf/install

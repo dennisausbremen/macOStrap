@@ -1,11 +1,7 @@
 #!/bin/bash
 
 # Project repo url
-#REPO="https://github.com/todo"
-# TODO: Create Github Repo / Clone from Repo to .tmp (trap when exiting)
-
-# Create /tmp directory
-#TMP_DIR="$( mktemp -d -t macostrap )"
+GITHUB_REPO_URL="https://github.com/dennisausbremen/macOStrap/"
 
 # Automatically remove temporary directory when exits
 trap removeBrewInstallDirs EXIT

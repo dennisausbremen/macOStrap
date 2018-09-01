@@ -31,12 +31,6 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-# Set a custom wallpaper image. `DefaultDesktop.jpg` is already a symlink, and
-# all wallpapers are in `/Library/Desktop Pictures/`. The default is `Wave.jpg`.
-rm -rf ~/Library/Application\ Support/Dock/desktoppicture.db
-sudo rm -rf /System/Library/CoreServices/DefaultDesktop.jpg
-sudo ln -s /Library/Desktop\ Pictures/Sierra\ 2.jpg /System/Library/CoreServices/DefaultDesktop.jpg
-
 # Automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
@@ -85,7 +79,10 @@ defaults write com.apple.dock wvous-tr-corner -int 5
 defaults write com.apple.dock wvous-tr-modifier -int 0
 
 # Finder: Show the ~/Library folder
-chflags nohidden ~/Library
+#chflags nohidden ~/Library
+
+# Finder: Show hidden files
+defaults write com.apple.finder AppleShowAllFiles YES
 
 # Finder: Column view as default
 defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
@@ -180,7 +177,6 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 
 # Kill affected applications
 for app in \
-  Dashboard \
   Dock \
   Finder \
   Safari \

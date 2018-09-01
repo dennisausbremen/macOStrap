@@ -1,9 +1,7 @@
 export ZPLUG_HOME=/usr/local/opt/zplug
-# Essential
 source $ZPLUG_HOME/init.zsh
-
 # zsh plugins
-zplug "modules/git", from:prezto, use:"alias.zsh"
+zplug "modules/git", from:prezto
 zplug "modules/environment", from:prezto
 zplug "modules/terminal", from:prezto
 zplug "modules/editor", from:prezto
@@ -20,12 +18,6 @@ zplug "mafredri/zsh-async", from:"github", use:"async.zsh"
 
 # prompt
 zplug "sindresorhus/pure"
-
-# install any uninstalled plugins
-zplug check || zplug install
-
-# Then, source packages and add commands to $PATH
-zplug load
 
 #
 # Prezto styles
@@ -67,6 +59,12 @@ zstyle ':completion:*' ignore-parents parent pwd
 zstyle ':completion:*:processes' command 'ps -au$USER -o pid,time,cmd|grep -v "ps -au$USER -o pid,time,cmd"'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)[ 0-9:]#([^ ]#)*=01;30=01;31=01;38'
 
+
+# install any uninstalled plugins
+zplug check || zplug install
+
+# Then, source packages and add commands to $PATH
+zplug load
 #
 # Shell Options
 #
@@ -149,5 +147,8 @@ alias cd....='cd ../../..'
 alias cd.....='cd ../../../..'
 
 alias brewsky='brew update && brew upgrade && brew prune && brew cleanup && brew doctor'
+
+export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
